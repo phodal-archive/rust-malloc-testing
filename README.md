@@ -8,3 +8,11 @@ related libraries:
  - [dlmalloc-rs](https://github.com/alexcrichton/dlmalloc-rs)
 
 
+i9g:
+
+ - [C2Rust](https://github.com/immunant/c2rust) helps you migrate C99-compliant code to Rust. The translator (or transpiler) produces unsafe Rust code that closely mirrors the input C code.
+
+Rewrite notes:
+
+ - [Refactoring Rust Transpiled from C](https://immunant.com/blog/2020/09/transpiled_c_safety/)
+ - [Heap Allocation](https://os.phil-opp.com/heap-allocation/)
