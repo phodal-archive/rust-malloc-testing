@@ -106,8 +106,8 @@ mod tests {
 
     #[test]
     fn should_create_short_string_with_struct_success() {
-        let long_str = "Boolean";
-        let utf_string = NormalString::new(String::from(long_str));
+        let length240 = "should_create_short_string_with_struct_successshould_create_short_string_with_struct_successshould_create_short_string_with_struct_successshould_create_short_string_with_struct_successshould_create_short_string_with_struct_success1234567890";
+        let utf_string = NormalString::new(String::from(length240));
         unsafe {
             let x = malloc(utf_string.length as usize) as *mut u32;
             assert_ne!(*x, 0);
