@@ -3,21 +3,26 @@ extern crate libc;
 use std::alloc::{GlobalAlloc, Layout, alloc};
 use std::ptr::null_mut;
 
-struct MyAllocator;
+// // custom malloc
+// struct MyAllocator;
+//
+// unsafe impl GlobalAlloc for MyAllocator {
+//     unsafe fn alloc(&self, _layout: Layout) -> *mut u8 { null_mut() }
+//     unsafe fn dealloc(&self, _ptr: *mut u8, _layout: Layout) {}
+// }
+//
+// #[global_allocator]
+// static A: MyAllocator = MyAllocator;
 
-unsafe impl GlobalAlloc for MyAllocator {
-    unsafe fn alloc(&self, _layout: Layout) -> *mut u8 { null_mut() }
-    unsafe fn dealloc(&self, _ptr: *mut u8, _layout: Layout) {}
-}
-
+// replace system malloc
+#[cfg(not(target_env = "msvc"))]
+use jemallocator::Jemalloc;
+#[cfg(not(target_env = "msvc"))]
 #[global_allocator]
-static A: MyAllocator = MyAllocator;
+static GLOBAL: Jemalloc = Jemalloc;
 
 fn main() {
-    // println!("Hello, world!");
-    unsafe {
-        assert!(alloc(Layout::new::<u32>()).is_null())
-    }
+    println!("Hello, world!");
 }
 
 struct NormalString {
@@ -36,6 +41,7 @@ impl NormalString {
 mod tests {
     use crate::NormalString;
     use libc::malloc;
+    use std::alloc::Layout;
 
     #[test]
     fn should_create_short_string_with_struct_success() {
