@@ -119,8 +119,14 @@ mod tests {
         let long_str = "\\b(AbsoluteTime|Boolean|Byte|ByteCount|ByteOffset|BytePtr|CompTimeValue|ConstLogicalAddress|ConstStrFileNameParam|ConstStringPtr|Duration|Fixed|FixedPtr|Float32|Float32Point|Float64|Float80|Float96|FourCharCode|Fract|FractPtr|Handle|ItemCount|LogicalAddress|OptionBits|OSErr|OSStatus|OSType|OSTypePtr|PhysicalAddress|ProcessSerialNumber|ProcessSerialNumberPtr|ProcHandle|Ptr|ResType|ResTypePtr|ShortFixed|ShortFixedPtr|SignedByte|SInt16|SInt32|SInt64|SInt8|Size|StrFileName|StringHandle|StringPtr|TimeBase|TimeRecord|TimeScale|TimeValue|TimeValue64|UInt16|UInt32|UInt64|UInt8|UniChar|UniCharCount|UniCharCountPtr|UniCharPtr|UnicodeScalarValue|UniversalProcHandle|UniversalProcPtr|UnsignedFixed|UnsignedFixedPtr|UnsignedWide|UTF16Char|UTF32Char|UTF8Char)\\b";
         let utf_string = NormalString::new(String::from(long_str));
         unsafe {
-            let x = malloc(utf_string.length as usize) as *mut u32;
-            assert_ne!(*x, 0);
+            let mut x = malloc(utf_string.length as usize) as *mut u8;
+            println!("{:?}", *x.offset(1));
+            println!("{:?}", *x.offset(2));
+            println!("{:?}", *x.offset(3));
+            println!("{:?}", *x.offset(18));
+            println!("{:?}", *x.offset(19));
+            println!("{:?}", *x.offset(20));
+            // assert_ne!(*x, 0);
         }
     }
 }
