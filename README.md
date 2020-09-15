@@ -6,7 +6,7 @@ related libraries:
  - [https://github.com/rustwasm/wee_alloc](https://github.com/rustwasm/wee_alloc)
  - [https://github.com/gnzlbg/jemallocator](https://github.com/gnzlbg/jemallocator)
  - [dlmalloc-rs](https://github.com/alexcrichton/dlmalloc-rs)
-
+ - [linked-list-allocator](https://github.com/phil-opp/linked-list-allocator)
 
 i9g:
 
@@ -21,6 +21,11 @@ Rewrite notes:
  - [Refactoring Rust Transpiled from C](https://immunant.com/blog/2020/09/transpiled_c_safety/)
  - [Examining ARM vs X86 Memory Models with Rust](https://www.nickwilcox.com/blog/arm_vs_x86_memory_model/)
  - [Rust's Runtime](https://blog.mgattozzi.dev/rusts-runtime/)
+
+中文：
+
+ - [分配器设计](https://sammyne.github.io/2020/07/31/blog-os-11-allocator-designs/)
+ - [堆内存分配](https://sammyne.github.io/2020/08/05/blog-os-10-heap-allocation/)
 
 ## Length 240
 
