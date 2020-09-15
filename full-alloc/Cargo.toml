@@ -1,5 +1,5 @@
 [package]
-name = "rust-malloc-test"
+name = "full-alloc"
 version = "0.1.0"
 authors = ["Phodal Huang <h@phodal.com>"]
 edition = "2018"
@@ -8,11 +8,3 @@ edition = "2018"
 
 [dependencies]
 libc = "0.2"
-
-[target.'cfg(not(target_env = "msvc"))'.dependencies]
-jemallocator = "0.3.2"
-
-[workspace]
-members = [
-    "full-alloc"
-]

@@ -15,11 +15,16 @@ use std::ptr::null_mut;
 // static A: MyAllocator = MyAllocator;
 
 // replace system malloc
-#[cfg(not(target_env = "msvc"))]
-use jemallocator::Jemalloc;
-#[cfg(not(target_env = "msvc"))]
+// #[cfg(not(target_env = "msvc"))]
+// use jemallocator::Jemalloc;
+// #[cfg(not(target_env = "msvc"))]
+// #[global_allocator]
+// static GLOBAL: Jemalloc = Jemalloc;
+
+use std::alloc::System;
+
 #[global_allocator]
-static GLOBAL: Jemalloc = Jemalloc;
+static A: System = System;
 
 fn main() {
     println!("Hello, world!");
@@ -36,11 +41,10 @@ impl NormalString {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use crate::NormalString;
-    // use libc::malloc;
+    use libc::malloc;
     use std::alloc::Layout;
 
     #[test]
