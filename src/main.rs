@@ -40,7 +40,7 @@ impl NormalString {
 #[cfg(test)]
 mod tests {
     use crate::NormalString;
-    use libc::malloc;
+    // use libc::malloc;
     use std::alloc::Layout;
 
     #[test]
