@@ -15,16 +15,16 @@ use std::ptr::null_mut;
 // static A: MyAllocator = MyAllocator;
 
 // replace system malloc
-// #[cfg(not(target_env = "msvc"))]
-// use jemallocator::Jemalloc;
-// #[cfg(not(target_env = "msvc"))]
-// #[global_allocator]
-// static GLOBAL: Jemalloc = Jemalloc;
-
-use std::alloc::System;
-
+#[cfg(not(target_env = "msvc"))]
+use jemallocator::Jemalloc;
+#[cfg(not(target_env = "msvc"))]
 #[global_allocator]
-static A: System = System;
+static GLOBAL: Jemalloc = Jemalloc;
+//
+// use std::alloc::System;
+//
+// #[global_allocator]
+// static A: System = System;
 
 fn main() {
     println!("Hello, world!");
