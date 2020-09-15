@@ -17,16 +17,22 @@ use libc::malloc;
 // static A: MyAllocator = MyAllocator;
 
 // replace system malloc
-#[cfg(not(target_env = "msvc"))]
-use jemallocator::Jemalloc;
-#[cfg(not(target_env = "msvc"))]
-#[global_allocator]
-static GLOBAL: Jemalloc = Jemalloc;
+// #[cfg(not(target_env = "msvc"))]
+// use jemallocator::Jemalloc;
+// #[cfg(not(target_env = "msvc"))]
+// #[global_allocator]
+// static GLOBAL: Jemalloc = Jemalloc;
 //
 // use std::alloc::System;
 //
 // #[global_allocator]
 // static A: System = System;
+
+extern crate wee_alloc;
+
+// Use `wee_alloc` as the global allocator.
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 struct NormalString {
     pub length: i32,
