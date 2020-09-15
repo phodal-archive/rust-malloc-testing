@@ -1,5 +1,11 @@
 extern crate libc;
 
+use std::alloc::System;
+
+// https://blog.rust-lang.org/2018/08/02/Rust-1.28.html#global-allocators
+#[global_allocator]
+static GLOBAL: System = System;
+
 fn main() {
     println!("Hello, world!");
 }
