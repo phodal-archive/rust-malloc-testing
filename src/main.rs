@@ -1,13 +1,23 @@
 extern crate libc;
 
-use std::alloc::System;
+use std::alloc::{GlobalAlloc, Layout, alloc};
+use std::ptr::null_mut;
 
-// https://blog.rust-lang.org/2018/08/02/Rust-1.28.html#global-allocators
+struct MyAllocator;
+
+unsafe impl GlobalAlloc for MyAllocator {
+    unsafe fn alloc(&self, _layout: Layout) -> *mut u8 { null_mut() }
+    unsafe fn dealloc(&self, _ptr: *mut u8, _layout: Layout) {}
+}
+
 #[global_allocator]
-static GLOBAL: System = System;
+static A: MyAllocator = MyAllocator;
 
 fn main() {
-    println!("Hello, world!");
+    // println!("Hello, world!");
+    unsafe {
+        assert!(alloc(Layout::new::<u32>()).is_null())
+    }
 }
 
 struct NormalString {
