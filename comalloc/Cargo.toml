@@ -1,5 +1,5 @@
 [package]
-name = "rust-malloc-test"
+name = "comalloc"
 version = "0.1.0"
 authors = ["Phodal Huang <h@phodal.com>"]
 edition = "2018"
@@ -7,14 +7,3 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-libc = "0.2"
-wee_alloc = "0.4.5"
-
-[target.'cfg(not(target_env = "msvc"))'.dependencies]
-jemallocator = "0.3.2"
-
-[workspace]
-members = [
-    "full-alloc",
-    "comalloc"
-]
